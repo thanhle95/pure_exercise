@@ -2,6 +2,7 @@ package com.example.messapi.domain;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class Message {
     private Map<String, List<String>> mess;
@@ -26,6 +27,20 @@ public class Message {
     }
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(mess, status);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if(this == o) return true;
+        if(o == null || getClass() != o.getClass()) return false;
+        Message that = (Message) o;
+        return Objects.equals(this.mess, that.mess) 
+            && Objects.equals(this.status,that.status);
     }
 
     
